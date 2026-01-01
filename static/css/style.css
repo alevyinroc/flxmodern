@@ -45,3 +45,13 @@ body{font-family: InterLocal, Inter, -apple-system, BlinkMacSystemFont, 'Segoe U
   .content-area{flex-direction:column}
   .main-column,.sidebar{width:100%}
 }
+
+/* Author profile styles */
+.author-profile{padding:1rem;background:rgba(0,0,0,0.02);border-radius:8px}
+.author-profile header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+.author-profile img{width:96px;height:96px;border-radius:50%;object-fit:cover;border:2px solid rgba(0,0,0,0.06)}
+.author-profile .role{color:var(--muted);font-size:0.95rem}
+.author-posts{margin-top:1.5rem}
+.author-posts ul{list-style:none;padding:0;margin:0}
+.author-posts li{padding:0.4rem 0;border-bottom:1px solid rgba(0,0,0,0.04)}
+
