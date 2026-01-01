@@ -8,7 +8,7 @@
     <div class="post-content">{{ .Content }}</div>
 
     <section class="comments">
-      {{ partial "comments.html" . }}
+      {{ partial "comments.html" (dict "page" . "site" .Site) }}
     </section>
   </article>
 {{ end }}

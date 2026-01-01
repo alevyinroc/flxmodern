@@ -1,5 +1,12 @@
-{{ if .Site.DisqusShortname }}
-  {{ template "_internal/disqus.html" . }}
+{{ $p := .page }}
+{{ $s := .site }}
+
+{{ with $s.Params.disqusShortname }}
+  {{ template "_internal/disqus.html" $p }}
 {{ else }}
-  <!-- Disqus not configured: set site.DisqusShortname in site config -->
+  {{ with $s.DisqusShortname }}
+    {{ template "_internal/disqus.html" $p }}
+  {{ else }}
+    <!-- Disqus not configured: set `params.disqusShortname` or `disqusShortname` in site config -->
+  {{ end }}
 {{ end }}
