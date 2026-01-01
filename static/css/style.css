@@ -65,3 +65,12 @@ body{font-family: InterLocal, Inter, -apple-system, BlinkMacSystemFont, 'Segoe U
 .author-name{font-weight:600}
 .author-list .role{color:var(--muted);font-size:0.95rem}
 
+/* Sidebar about widget */
+.about-widget{display:flex;gap:0.75rem;align-items:flex-start}
+.author-avatar-wrap{flex:0 0 auto}
+.author-avatar{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid rgba(0,0,0,0.04)}
+.author-info{flex:1}
+.author-name{font-weight:700;margin:0}
+.author-bio{margin:0.25rem 0 0;color:var(--muted);font-size:0.95rem}
+
+

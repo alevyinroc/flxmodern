@@ -1,6 +1,18 @@
-<div class="widget">
+<div class="widget about-widget">
   <h3>About</h3>
-  {{ with .Site.Params.author }}<p>{{ . }}</p>{{ end }}
+  {{ with .Site.Params.author }}
+    {{/* If `author` is a map (object), render fields; otherwise print as string */}}
+    {{ if kindIs "map" . }}
+      {{ $a := . }}
+      {{ with $a.avatar }}<div class="author-avatar-wrap"><img class="author-avatar" src="{{ . | relURL }}" alt="{{ $a.name }}"></div>{{ end }}
+      <div class="author-info">
+        {{ with $a.name }}<p class="author-name">{{ . }}</p>{{ end }}
+        {{ with $a.bio }}<p class="author-bio">{{ . }}</p>{{ end }}
+      </div>
+    {{ else }}
+      <p>{{ . }}</p>
+    {{ end }}
+  {{ end }}
 </div>
 
 <div class="widget">
