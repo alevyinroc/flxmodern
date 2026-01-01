@@ -1,12 +1,12 @@
-{{ $p := .page }}
-{{ $s := .site }}
+{{ $p := . }}
 
 {{/* Show comments when the page front matter sets `comments: true` OR the page is in the `posts` section */}}
 {{ if or (eq (default false $p.Params.comments) true) (eq $p.Section "posts") }}
-  {{ with $s.Params.disqusShortname }}
+  {{ with $p.Site.Params.disqusShortname }}
     {{ template "_internal/disqus.html" $p }}
   {{ else }}
-    {{ with $s.DisqusShortname }}
+    {{/* Fallback: try site-level DisqusShortname if present on Site (some site configs set it there) */}}
+    {{ with (index $p.Site "DisqusShortname") }}
       {{ template "_internal/disqus.html" $p }}
     {{ else }}
       <!-- Disqus not configured: set `params.disqusShortname` or `disqusShortname` in site config -->
