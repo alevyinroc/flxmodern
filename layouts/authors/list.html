@@ -3,8 +3,14 @@
   <ul class="author-list">
     {{ range .Pages }}
       <li>
-        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-        {{ with .Params.role }}<span class="role"> — {{ . }}</span>{{ end }}
+        {{ $avatar := .Params.avatar | default "/images/authors/default.svg" }}
+        <a class="author-link" href="{{ .RelPermalink }}">
+          <img class="author-thumb" src="{{ $avatar }}" alt="{{ .Title }}">
+          <span class="author-meta">
+            <span class="author-name">{{ .Title }}</span>
+            {{ with .Params.role }}<span class="role"> — {{ . }}</span>{{ end }}
+          </span>
+        </a>
       </li>
     {{ end }}
   </ul>
