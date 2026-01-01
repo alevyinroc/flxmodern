@@ -1,0 +1,6 @@
+name = "flxmodern"
+license = "MIT"
+min_version = "0.55.0"
+description = "Clean, modern Hugo theme with light/dark modes and clean typography."
+tags = ["blog", "minimal", "responsive", "theme"]
+authors = [ { name = "flxmodern" } ]

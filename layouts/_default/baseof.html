@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+  <head>
+    {{ partial "head.html" . }}
+  </head>
+  <body class="{{ with .Site.Params.colorMode }}{{ . }}{{ else }}light{{ end }}">
+    {{ partial "header.html" . }}
+
+    <main class="site-wrap">
+      <div class="container">
+        <div class="content-area">
+          <section class="main-column">
+            {{ block "main" . }}{{ end }}
+          </section>
+          <aside class="sidebar">
+            {{ partial "sidebar.html" . }}
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    {{ partial "footer.html" . }}
+    <script src="{{ "js/theme.js" | relURL }}"></script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="{{ .Site.LanguageCode }}">
+  <head>
+    {{ partial "head.html" . }}
+  </head>
+  <body class="{{ with .Site.Params.colorMode }}{{ . }}{{ else }}light{{ end }}">
+    {{ partial "header.html" . }}
+
+    <main class="site-wrap">
+      <div class="container">
+        <h1>{{ .Site.Title }}</h1>
+        {{ $paginator := .Paginate (where .Site.RegularPages "Type" "posts" ) }}
+        <ul class="post-list">
+          {{ range $paginator.Pages }}
+            <li class="post-item">
+              <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+              <p class="excerpt">{{ .Summary }}</p>
+            </li>
+          {{ end }}
+        </ul>
+
+        <nav class="pagination">
+          {{ if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}">Previous</a>{{ end }}
+          {{ if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}">Next</a>{{ end }}
+        </nav>
+      </div>
+    </main>
+
+    {{ partial "footer.html" . }}
+    <script src="{{ "js/theme.js" | relURL }}"></script>
+  </body>
+</html>

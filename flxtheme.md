@@ -6,6 +6,9 @@ I want the appearance to:
     *Have dark and light modes
     *Have clean typography
 
+Designs I've seen that I like:
+    * https://rickcarlino.com
+
 Navigation:
     Hierarchical menus in a navigation bar
 
@@ -14,5 +17,14 @@ Page dimensions:
     *The main page, and index pages for each category, will have:
         *A main column that's 75% of the content space
         *A sidebar that's 20% of the content space.
-        
-It should have space in the header for a logo image as well as site title and subtitle. The template for individual blog posts should support multiple authors, and there will be more than one author across the whole site so there need to be pages for authors. The main pages of the site should display the beginning of 10 blog posts at a time and be paginated, similar to how the current flxsql.com renders. Each blog post page should also support comments from the disqus service. I don’t want to use any external resources if at all possible (so, only self-hosted fonts and libraries). Can you start building that? Call it "flxmodern" and place it in the local path /home/andy/code/themes/flxmodern
+Pages:
+    * The front/main page should be snippets of the 10 most recent posts across all categories
+    * Additional posts (past the first 10) will be on secondary pages, accessed via links labeled Previous and Next, with the same appearance as the front page
+    * There will be pages for each category which mirror the main page appearance and behavior
+    * Each blog post will get its own page which contains the post content, Disqus comments at the bottom, and the sitewide header and navigation.
+
+The site configuration and theme should support multiple authors. Each author will get their own page for profile information.
+
+I don’t want to use any external resources if at all possible (so, only self-hosted fonts and libraries).
+
+Can you start building that? Call it "flxmodern" and place it in the local path /Users/andy/code/flxmodern, which is a git repository cloned from https://github.com/alevyinroc/flxmodern

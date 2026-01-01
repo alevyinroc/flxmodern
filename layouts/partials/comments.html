@@ -1,0 +1,5 @@
+{{ if .Site.DisqusShortname }}
+  {{ template "_internal/disqus.html" . }}
+{{ else }}
+  <!-- Disqus not configured: set site.DisqusShortname in site config -->
+{{ end }}

@@ -1,0 +1,11 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
+
+<link rel="stylesheet" href="{{ "css/style.css" | relURL }}" />
+
+{{/* Example preload for a self-hosted font placed in `static/fonts/` */}}
+<link rel="preload" href="{{ "fonts/Inter-Regular.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+{{/* If you add fonts to `static/fonts/`, the CSS `@font-face` in `static/css/style.css` will reference them. */}}
+
+{{ block "head_extra" . }}{{ end }}

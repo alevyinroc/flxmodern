@@ -1,0 +1,14 @@
+{{ define "main" }}
+  <article class="post">
+    <header class="post-header">
+      <h1>{{ .Title }}</h1>
+      <div class="meta">{{ .Date.Format "Jan 2, 2006" }} • {{ range .Params.authors }}<a href="{{ "authors/" | relURL }}{{ . | urlize }}">{{ . }}</a>{{ end }}</div>
+    </header>
+
+    <div class="post-content">{{ .Content }}</div>
+
+    <section class="comments">
+      {{ partial "comments.html" . }}
+    </section>
+  </article>
+{{ end }}
