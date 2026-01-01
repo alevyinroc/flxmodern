@@ -1,19 +1,4 @@
-<div class="widget about-widget">
-  <h3>About</h3>
-  {{ with .Site.Params.author }}
-    {{ $author := . }}
-    {{ with $author.name }}
-      {{/* treat as map/object */}}
-      {{ with $author.avatar }}<div class="author-avatar-wrap"><img class="author-avatar" src="{{ . | relURL }}" alt="{{ $author.name }}"></div>{{ end }}
-      <div class="author-info">
-        {{ with $author.name }}<p class="author-name">{{ . }}</p>{{ end }}
-        {{ with $author.bio }}<p class="author-bio">{{ . }}</p>{{ end }}
-      </div>
-    {{ else }}
-      <p>{{ $author }}</p>
-    {{ end }}
-  {{ end }}
-</div>
+{{/* About widget removed from sidebar by theme preference; author info appears on post pages. */}}
 
 <div class="widget">
   <h3>Recent Posts</h3>

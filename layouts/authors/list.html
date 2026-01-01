@@ -1,15 +1,16 @@
 {{ define "main" }}
   <h1>Authors</h1>
   <ul class="author-list">
-    {{ range .Pages }}
-      <li>
-        {{ $avatar := .Params.avatar | default "/images/authors/default.svg" }}
-        <a class="author-link" href="{{ .RelPermalink }}">
-          <img class="author-thumb" src="{{ $avatar }}" alt="{{ .Title }}">
-          <span class="author-meta">
-            <span class="author-name">{{ .Title }}</span>
-            {{ with .Params.role }}<span class="role"> — {{ . }}</span>{{ end }}
-          </span>
+    {{ $authors := where .Site.RegularPages "Section" "authors" }}
+    {{ range $authors }}
+      <li class="author-item">
+        <a href="{{ .RelPermalink }}">
+          <img class="author-avatar" src="{{ with .Params.avatar }}{{ . }}{{ else }}{{ "/images/authors/default.svg" }}{{ end }}" alt="{{ .Title }}">
+          <div class="author-info">
+            <h2>{{ .Title }}</h2>
+            {{ with .Params.role }}<div class="author-role">{{ . }}</div>{{ end }}
+            {{ with .Summary }}<p class="author-summary">{{ . }}</p>{{ else }}{{ with .Params.bio }}<p class="author-summary">{{ . }}</p>{{ end }}{{ end }}
+          </div>
         </a>
       </li>
     {{ end }}

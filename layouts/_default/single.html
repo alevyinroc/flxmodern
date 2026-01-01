@@ -6,9 +6,49 @@
     </header>
 
     <div class="post-content">{{ .Content }}</div>
+      {{/* About the author section: render for posts using author pages when available */}}
+      {{ if .Params.authors }}
+        <section class="about-author">
+          <h2>About the Author</h2>
+          {{ range .Params.authors }}
+            {{ $name := . }}
+              {{/* Try multiple strategies to find an author page: by slug, by Title, by Params.name, or by file base name. Use Scratch to store result. */}}
+              {{ $slug := urlize $name }}
+              {{ $.Scratch.Set "authorPage" (site.GetPage (printf "authors/%s" $slug)) }}
+              {{ if not ($.Scratch.Get "authorPage") }}
+                {{ $authorsIndex := where site.RegularPages "Section" "authors" }}
+                {{ $.Scratch.Set "authorPage" (first 1 (where $authorsIndex "Title" "eq" $name)) }}
+              {{ end }}
+              {{ if not ($.Scratch.Get "authorPage") }}
+                {{ $authorsIndex := where site.RegularPages "Section" "authors" }}
+                {{ $.Scratch.Set "authorPage" (first 1 (where $authorsIndex "Params.name" "eq" $name)) }}
+              {{ end }}
+              {{ if not ($.Scratch.Get "authorPage") }}
+                {{ $authorsIndex := where site.RegularPages "Section" "authors" }}
+                {{ $.Scratch.Set "authorPage" (first 1 (where $authorsIndex "File.BaseFileName" "eq" $slug)) }}
+              {{ end }}
+              {{ $authorPage := $.Scratch.Get "authorPage" }}
+              {{ if $authorPage }}
+              <div class="author-card">
+                  {{ with $authorPage.Params.avatar }}<img class="author-avatar" src="{{ . | relURL }}" alt="{{ $authorPage.Title }}">{{ end }}
+                <div class="author-meta">
+                  <h3><a href="{{ $authorPage.RelPermalink }}">{{ $authorPage.Title }}</a></h3>
+                  {{ with $authorPage.Params.role }}<div class="author-role">{{ . }}</div>{{ end }}
+                  {{ with $authorPage.Params.bio }}<div class="author-bio">{{ . }}</div>{{ else }}{{ with $authorPage.Summary }}<div class="author-bio">{{ . }}</div>{{ end }}{{ end }}
+                </div>
+              </div>
+            {{ else }}
+              <div class="author-card">
+                <div class="author-meta"><h3>{{ $name }}</h3></div>
+              </div>
+            {{ end }}
+          {{ end }}
+        </section>
 
-    <section class="comments">
-      {{ partial "comments.html" . }}
-    </section>
+      {{ end }}
+
+      <section class="comments">
+        {{ partial "comments.html" . }}
+      </section>
   </article>
 {{ end }}

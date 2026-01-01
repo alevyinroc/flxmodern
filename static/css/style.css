@@ -73,4 +73,12 @@ body{font-family: InterLocal, Inter, -apple-system, BlinkMacSystemFont, 'Segoe U
 .author-name{font-weight:700;margin:0}
 .author-bio{margin:0.25rem 0 0;color:var(--muted);font-size:0.95rem}
 
+/* About the Author (post footer) */
+.about-author{margin-top:2rem;padding-top:1rem;border-top:1px solid rgba(0,0,0,0.06)}
+.author-card{display:flex;gap:1rem;align-items:flex-start}
+.author-card .author-avatar{width:80px;height:80px;border-radius:50%;object-fit:cover}
+.author-card .author-meta h3{margin:0}
+.author-role{color:var(--muted);font-size:0.95rem;margin-top:0.25rem}
+.about-author .author-bio{margin-top:0.5rem}
+
 
