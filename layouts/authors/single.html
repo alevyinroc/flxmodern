@@ -1,0 +1,21 @@
+{{ define "main" }}
+  <article class="author-profile">
+    <header>
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.role }}<div class="role">{{ . }}</div>{{ end }}
+      {{ with .Params.location }}<div class="location">{{ . }}</div>{{ end }}
+    </header>
+
+    <div class="bio">{{ .Content }}</div>
+
+    <section class="author-posts">
+      <h2>Posts by {{ .Title }}</h2>
+      <ul>
+        {{ $name := .Title }}
+        {{ range where site.RegularPages "Params.authors" "intersect" (slice $name) }}
+          <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> <span class="date">{{ .Date.Format "Jan 2, 2006" }}</span></li>
+        {{ end }}
+      </ul>
+    </section>
+  </article>
+{{ end }}

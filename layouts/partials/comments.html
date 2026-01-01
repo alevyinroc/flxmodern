@@ -5,11 +5,6 @@
   {{ with $p.Site.Params.disqusShortname }}
     {{ template "_internal/disqus.html" $p }}
   {{ else }}
-    {{/* Fallback: try site-level DisqusShortname if present on Site (some site configs set it there) */}}
-    {{ with (index $p.Site "DisqusShortname") }}
-      {{ template "_internal/disqus.html" $p }}
-    {{ else }}
-      <!-- Disqus not configured: set `params.disqusShortname` or `disqusShortname` in site config -->
-    {{ end }}
+    <!-- Disqus not configured: set `params.disqusShortname` in site config -->
   {{ end }}
 {{ end }}

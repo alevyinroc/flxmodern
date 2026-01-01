@@ -1,0 +1,11 @@
+{{ define "main" }}
+  <h1>Authors</h1>
+  <ul class="author-list">
+    {{ range .Pages }}
+      <li>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        {{ with .Params.role }}<span class="role"> — {{ . }}</span>{{ end }}
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}
