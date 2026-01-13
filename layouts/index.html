@@ -11,7 +11,14 @@
         <h1>{{ .Site.Title }}</h1>
         {{ $paginator := .Paginate (where .Site.RegularPages "Type" "posts" ) }}
         <ul class="post-list">
+          {{ $root := . }}
+          {{ $root.Scratch.Set "lastDate" "" }}
           {{ range $paginator.Pages }}
+            {{ $date := .Date.Format "Jan 2, 2006" }}
+            {{ if ne ($root.Scratch.Get "lastDate") $date }}
+              <li class="post-date"><strong>{{ $date }}</strong></li>
+              {{ $root.Scratch.Set "lastDate" $date }}
+            {{ end }}
             <li class="post-item">
               <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
               <p class="excerpt">{{ .Summary }}</p>
