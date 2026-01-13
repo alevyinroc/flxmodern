@@ -2,7 +2,16 @@
   <article class="post">
     <header class="post-header">
       <h1>{{ .Title }}</h1>
-      <div class="meta">{{ .Date.Format "Jan 2, 2006" }} • {{ if .Params.authors }}{{ range $i, $a := .Params.authors }}{{ if gt $i 0 }}, {{ end }}<a href="{{ "authors/" | relURL }}{{ $a | urlize }}">{{ $a }}</a>{{ end }}{{ end }}</div>
+      <div class="meta">
+        {{ $pub := .Date.Format "Jan 2, 2006" }}
+        {{ $mod := .Lastmod.Format "Jan 2, 2006" }}
+        {{ if ne $pub $mod }}
+          {{ $pub }} (updated {{ $mod }})
+        {{ else }}
+          {{ $pub }}
+        {{ end }}
+        • {{ if .Params.authors }}{{ range $i, $a := .Params.authors }}{{ if gt $i 0 }}, {{ end }}<a href="{{ "authors/" | relURL }}{{ $a | urlize }}">{{ $a }}</a>{{ end }}{{ end }}
+      </div>
     </header>
 
     <div class="post-content">{{ .Content }}</div>
