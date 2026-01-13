@@ -3,7 +3,8 @@
 <div class="widget">
   <h3>Recent Posts</h3>
   <ul>
-    {{ $recent := first 10 (where .Site.RegularPages "Section" "posts").ByDate.Reverse }}
+    {{ $count := default 5 .Site.Params.recentPosts }}
+    {{ $recent := first $count (where .Site.RegularPages "Section" "posts").ByDate.Reverse }}
     {{ range $recent }}
       <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
     {{ else }}

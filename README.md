@@ -29,6 +29,8 @@ disqusShortname = "YOUR_DISQUS_SHORTNAME"
 [params]
   # default color scheme: "light" or "dark"; users can toggle in browser
   colorMode = "light"
+  # Number of recent posts shown in the sidebar. Defaults to 5 if omitted.
+  # recentPosts = 5
 ```
 
 Example menus (hierarchical)

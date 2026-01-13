@@ -1,0 +1,19 @@
+baseURL = "http://example.org/"
+title = "flxmodern example"
+theme = "flxmodern"
+languageCode = "en-us"
+paginate = 10
+
+# Optional Disqus shortname (uncomment and set to enable comments)
+# disqusShortname = "your_shortname"
+
+[params]
+  # default color scheme: "light" or "dark"
+  colorMode = "light"
+  # Number of recent posts shown in the sidebar. Defaults to 5 in the theme if omitted.
+  recentPosts = 5
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  author = "authors"
