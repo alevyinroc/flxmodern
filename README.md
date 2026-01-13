@@ -33,6 +33,18 @@ disqusShortname = "YOUR_DISQUS_SHORTNAME"
   # recentPosts = 5
 ```
 
+## Embeds
+
+To embed responsive iframes or videos, wrap the embed in the `.embed-responsive` wrapper. This preserves aspect ratio while constraining the embed to the post column width:
+
+```html
+<div class="embed-responsive">
+  <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+</div>
+```
+
+If you prefer not to wrap embeds, standalone `<iframe>` and `<video>` elements are also constrained by the theme's CSS as a fallback.
+
 Example menus (hierarchical)
 
 ```toml

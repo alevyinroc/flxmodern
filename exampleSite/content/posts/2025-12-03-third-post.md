@@ -7,3 +7,9 @@ draft: false
 ---
 
 Another sample post to fill out the example site.
+
+Example embed (responsive):
+
+<div class="embed-responsive">
+	<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+</div>
