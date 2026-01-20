@@ -5,7 +5,7 @@
       <div class="meta">
         {{ $pub := .Date.Format "Jan 2, 2006" }}
         {{ $mod := .Lastmod.Format "Jan 2, 2006" }}
-        {{ if ne $pub $mod }}
+        {{ if and (ne $pub $mod) (.Lastmod.After .Date) }}
           {{ $pub }} (updated {{ $mod }})
         {{ else }}
           {{ $pub }}
