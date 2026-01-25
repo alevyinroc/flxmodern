@@ -12,6 +12,11 @@
         {{ end }}
         • {{ if .Params.authors }}{{ range $i, $a := .Params.authors }}{{ if gt $i 0 }}, {{ end }}<a href="{{ "authors/" | relURL }}{{ $a | urlize }}">{{ $a }}</a>{{ end }}{{ end }}
       </div>
+      {{ if .Params.categories }}
+        <div class="post-categories">
+          {{ range .Params.categories }}<a href="{{ "/categories/" | relURL }}{{ . | urlize }}/">{{ . }}</a>{{ end }}
+        </div>
+      {{ end }}
     </header>
 
     <div class="post-content">{{ .Content }}</div>
