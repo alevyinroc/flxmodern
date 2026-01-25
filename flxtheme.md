@@ -24,6 +24,8 @@ Pages:
     * Each blog post will get its own page which contains the post content, Disqus comments at the bottom, and the sitewide header and navigation.
     * At the bottom of each blog post page, place an "About the Author" widget that includes the author avatar and link to the author's page
     * The page listing categories should show all categories as a word cloud, with the size of each category scaled relative to the number of posts in that category
+    * The sidebar should show the 5 most recent posts. This number is configurable in the site configuration
+    * At the bottom of each post and above the Author block, place links to the previous and next posts, with the title shown. Previous should be on the left with an arrow pointing to the left, and next is on the right with an arrow pointing to the right. The Previous link should be fully left justified and the Next link fully right justified
 
 The site configuration and theme should support multiple authors. Each author will get their own page for profile information.
 

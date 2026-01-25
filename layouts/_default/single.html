@@ -15,6 +15,20 @@
     </header>
 
     <div class="post-content">{{ .Content }}</div>
+
+      <nav class="post-navigation">
+        <div class="post-nav-prev">
+          {{ if .PrevInSection }}
+            <a href="{{ .PrevInSection.RelPermalink }}">← {{ .PrevInSection.Title }}</a>
+          {{ end }}
+        </div>
+        <div class="post-nav-next">
+          {{ if .NextInSection }}
+            <a href="{{ .NextInSection.RelPermalink }}">{{ .NextInSection.Title }} →</a>
+          {{ end }}
+        </div>
+      </nav>
+
       {{/* About the author section: render for posts using author pages when available */}}
       {{ if .Params.authors }}
         <section class="about-author">

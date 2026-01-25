@@ -128,4 +128,36 @@ body{font-family: InterLocal, Inter, -apple-system, BlinkMacSystemFont, 'Segoe U
   margin: 0.75rem 0;
 }
 
+/* Post navigation (prev/next) */
+.post-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  gap: 1rem;
+}
 
+.post-nav-prev {
+  flex: 1;
+  text-align: left;
+}
+
+.post-nav-next {
+  flex: 1;
+  text-align: right;
+}
+
+.post-nav-prev a,
+.post-nav-next a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.post-nav-prev a:hover,
+.post-nav-next a:hover {
+  text-decoration: underline;
+}
