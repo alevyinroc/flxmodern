@@ -13,11 +13,3 @@
   </ul>
 </div>
 
-<div class="widget">
-  <h3>Categories</h3>
-  <ul>
-    {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
-      <li><a href="{{ (index $taxonomy 0).Page.RelPermalink }}">{{ $name }}</a> ({{ len $taxonomy }})</li>
-    {{ end }}
-  </ul>
-</div>
