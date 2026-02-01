@@ -172,6 +172,27 @@ body.dark .post-categories a:hover{
 .post-content h4 {
   text-decoration: underline;
   text-underline-offset: 3px;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Show anchor symbol on hover */
+.post-content h2::after,
+.post-content h3::after,
+.post-content h4::after {
+  content: ' #';
+  margin-left: 0.5rem;
+  color: var(--accent);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.post-content h2:hover::after,
+.post-content h3:hover::after,
+.post-content h4:hover::after {
+  opacity: 1;
 }
 
 @media (max-width:900px){

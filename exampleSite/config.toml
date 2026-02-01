@@ -13,6 +13,10 @@ paginate = 10
   # Number of recent posts shown in the sidebar. Defaults to 5 in the theme if omitted.
   recentPosts = 5
 
+[markup.goldmark.parser.heading]
+  # Auto-generate IDs for headings so they can be linked directly
+  autoHeadingID = true
+
 [taxonomies]
   category = "categories"
   tag = "tags"
