@@ -26,6 +26,7 @@ Pages:
     * The page listing categories should show all categories as a word cloud, with the size of each category scaled relative to the number of posts in that category
     * The sidebar should show the 5 most recent posts. This number is configurable in the site configuration
     * At the bottom of each post and above the Author block, place links to the previous and next posts, with the title shown. Previous should be on the left with an arrow pointing to the left, and next is on the right with an arrow pointing to the right. The Previous link should be fully left justified and the Next link fully right justified
+    * Each post, on both the index and single post pages, should have a "panel" appearance, with a border around each post and widget. The border has rounded corners with a 16px radius, and the panel is off-white in the grey/blue tones.
 
 The site configuration and theme should support multiple authors. Each author will get their own page for profile information.
 
@@ -35,6 +36,5 @@ The sidebar widgets should include:
     *Recent posts
     *Categories
     *Social Media links
-
 
 Can you start building that? Call it "flxmodern" and place it in the local path /Users/andy/code/flxmodern, which is a git repository cloned from https://github.com/alevyinroc/flxmodern
