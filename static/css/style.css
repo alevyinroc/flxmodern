@@ -162,6 +162,24 @@ body.dark .post-categories a:hover{
 .post-toc a{color:var(--accent);text-decoration:none}
 .post-toc a:hover{text-decoration:underline}
 
+/* Sidebar TOC widget: sticky on wide screens, scrollable if tall */
+.widget-toc{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 1.75rem;
+  z-index: 2;
+}
+.widget-toc nav{max-height:60vh;overflow:auto;padding-right:0.25rem}
+
+/* Make summary appearance consistent in sidebar */
+.widget-toc summary{font-size:1rem;margin-bottom:0.25rem}
+
+@media (max-width:900px){
+  /* On small screens, keep TOC collapsed by default and flow with content */
+  .widget-toc{position:static;}
+  .widget-toc nav{max-height:none;overflow:visible;padding-right:0}
+}
+
 @media (max-width:900px){
   .post-toc{display:block}
 }

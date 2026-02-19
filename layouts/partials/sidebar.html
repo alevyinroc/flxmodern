@@ -1,5 +1,17 @@
 {{/* About widget removed from sidebar by theme preference; author info appears on post pages. */}}
 
+{{/* TOC widget: show on single post pages in the "posts" section */}}
+{{ if and .IsPage (eq .Section "posts") }}
+  {{ $toc := .TableOfContents }}
+  {{ $tocItems := findRE "<li[^>]*>" $toc }}
+  {{ if gt (len $tocItems) 0 }}
+    <details class="post-toc widget-toc open-on-desktop">
+      <summary>On this page</summary>
+      {{ $toc | safeHTML }}
+    </details>
+  {{ end }}
+{{ end }}
+
 <div class="widget widget-panel">
   <h3>Recent Posts</h3>
   <ul>

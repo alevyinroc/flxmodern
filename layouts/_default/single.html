@@ -19,14 +19,7 @@
       {{ end }}
     </header>
 
-    {{ $toc := .TableOfContents }}
-    {{ $tocItems := findRE "<li[^>]*>" $toc }}
-    {{ if gt (len $tocItems) 0 }}
-      <details class="post-toc" aria-label="Table of contents">
-        <summary>On this page</summary>
-        {{ $toc | safeHTML }}
-      </details>
-    {{ end }}
+    {{/* Table of contents moved to the sidebar widget */}}
 
     <div class="post-content">{{ .Content }}</div>
 
