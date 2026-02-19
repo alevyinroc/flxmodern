@@ -1,18 +1,22 @@
 {{/* About widget removed from sidebar by theme preference; author info appears on post pages. */}}
 
-{{/* TOC widget: show on single post pages in the "posts" section */}}
-{{ if and .IsPage (eq .Section "posts") }}
-  {{ $toc := .TableOfContents }}
-  {{ $tocItems := findRE "<li[^>]*>" $toc }}
-  {{ if gt (len $tocItems) 0 }}
-    <details class="post-toc widget-toc open-on-desktop">
-      <summary>On this page</summary>
-      {{ $toc | safeHTML }}
-    </details>
-  {{ end }}
-{{ end }}
+{{/* TOC widget will be rendered inside the sidebar-inner so it stays fixed with other widgets */}}
 
-<div class="widget widget-panel">
+<div class="sidebar-inner">
+
+  {{/* TOC widget: show on single post pages in the "posts" section */}}
+  {{ if and .IsPage (eq .Section "posts") }}
+    {{ $toc := .TableOfContents }}
+    {{ $tocItems := findRE "<li[^>]*>" $toc }}
+    {{ if gt (len $tocItems) 0 }}
+      <details class="post-toc widget-toc open-on-desktop">
+        <summary>On this page</summary>
+        {{ $toc | safeHTML }}
+      </details>
+    {{ end }}
+  {{ end }}
+
+  <div class="widget widget-panel">
   <h3>Recent Posts</h3>
   <ul>
     {{ $count := default 5 .Site.Params.recentPosts }}
@@ -23,5 +27,49 @@
       <li>No posts yet.</li>
     {{ end }}
   </ul>
+</div>
+
+{{/* Social links widget: configured via .Site.Params.widgets.social
+   Each value may be either a full URL or a plain username. When a username
+   is provided, the theme will construct the canonical profile URL.
+*/}}
+{{ $social := .Site.Params.widgets.social }}
+{{ if $social }}
+  <div class="widget widget-panel widget-social">
+    <h3>Follow</h3>
+    <ul class="social-list">
+      {{ with $social.mastodon }}
+        <li class="social-item social-mastodon"><a href="{{ if hasPrefix . "http" }}{{ . }}{{ else }}{{ printf "https://mastodon.social/@%s" . }}{{ end }}" rel="me" target="_blank">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21.5 7.5C21.5 3.5 18.5 2 16.5 2c-3.5 0-4.5 2.5-4.5 2.5S11 2 7.5 2C4.5 2 1.5 3.5 1.5 7.5c0 4 1 8 4 10 1 0 1-1 1-1 0-1 0-2 0-3 0-1 1-2 1-2s0 0 0 0c0 0 1 0 2 1 1 .5 2.5 1 4 1 3 0 5-1 6-3 0 0 0 0 0 0 0 0 0-1 0-2 0-2-1-3-1-3z"/></svg>
+          Mastodon</a></li>
+      {{ end }}
+
+      {{ with $social.bluesky }}
+        <li class="social-item social-bluesky"><a href="{{ if hasPrefix . "http" }}{{ . }}{{ else }}{{ printf "https://bsky.app/profile/%s" . }}{{ end }}" target="_blank">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2s4 0 6 2 4 6 4 10-3 9-9 9-9-4-9-9 4-10 9-12z"/></svg>
+          Bluesky</a></li>
+      {{ end }}
+
+      {{ with $social.instagram }}
+        <li class="social-item social-instagram"><a href="{{ if hasPrefix . "http" }}{{ . }}{{ else }}{{ printf "https://instagram.com/%s" . }}{{ end }}" target="_blank">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6.5A4.5 4.5 0 1 0 16.5 13 4.5 4.5 0 0 0 12 8.5zM18.5 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>
+          Instagram</a></li>
+      {{ end }}
+
+      {{ with $social.linkedin }}
+        <li class="social-item social-linkedin"><a href="{{ if hasPrefix . "http" }}{{ . }}{{ else }}{{ printf "https://www.linkedin.com/in/%s" . }}{{ end }}" target="_blank">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M4.98 3.5A2.5 2.5 0 1 1 4.98 8.5 2.5 2.5 0 1 1 4.98 3.5zM3 9h4v12H3zM9 9h3.75v1.71h.05c.52-.99 1.79-1.71 3.69-1.71 3.95 0 4.69 2.6 4.69 5.98V21H18v-5.08c0-1.21-.02-2.77-1.69-2.77-1.69 0-1.95 1.32-1.95 2.68V21H9z"/></svg>
+          LinkedIn</a></li>
+      {{ end }}
+
+      {{ with $social.github }}
+        <li class="social-item social-github"><a href="{{ if hasPrefix . "http" }}{{ . }}{{ else }}{{ printf "https://github.com/%s" . }}{{ end }}" target="_blank">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 .5A12 12 0 0 0 0 12.5c0 5.3 3.4 9.8 8.2 11.4.6.1.8-.2.8-.5v-2c-3.3.7-4-1.6-4-1.6-.5-1.2-1.2-1.5-1.2-1.5-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1.8 1.8.9 2 .8.1 1.4.1 2.1 0 0 0 .6-1.9.9-2 .9 0 1.7-1.1 1.7-1.1s.6-1.3 1.1-1.7c.8-.6 1.7 0 1.7 0 0 .4.2 2 .2 2.9v2c0 .3.2.6.8.5A12 12 0 0 0 24 12.5 12 12 0 0 0 12 .5z"/></svg>
+          GitHub</a></li>
+      {{ end }}
+    </ul>
+  </div>
+{{ end }}
+
 </div>
 

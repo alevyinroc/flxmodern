@@ -77,27 +77,53 @@
 
   // Compute stacked sticky offsets for sidebar widgets so they don't overlap
   function updateSidebarStickyOffsets(){
+    // On desktop, make the whole sidebar-inner fixed so widgets remain
+    // positioned relative to each other. On mobile, revert to normal flow.
+    const sidebarInner = document.querySelector('.sidebar-inner');
     const sidebar = document.querySelector('.sidebar');
-    if(!sidebar) return;
-    const gap = 12; // spacing between stacked widgets
-    let offset = 16; // initial top offset
+    if(!sidebarInner || !sidebar) return;
 
-    // Only consider direct children that are element nodes and visible
-    const widgets = Array.from(sidebar.children).filter(el => el.nodeType===1 && el.offsetParent !== null && el.getBoundingClientRect().height > 0);
-
-    widgets.forEach(w => {
-      // Reset any inline top for measurement stability
-      w.style.position = 'sticky';
-      w.style.top = offset + 'px';
-      w.style.zIndex = 2;
-      // increase offset by the widget's height + gap
-      const h = Math.ceil(w.getBoundingClientRect().height);
-      offset += h + gap;
-    });
+    const isDesktop = window.innerWidth > 900;
+    if(isDesktop){
+      // compute position and width to match sidebar column
+      const rect = sidebar.getBoundingClientRect();
+      const top = 28; // keep small gap from top (1.75rem ~= 28px)
+      sidebarInner.style.position = 'fixed';
+      sidebarInner.style.top = top + 'px';
+      sidebarInner.style.left = rect.left + 'px';
+      sidebarInner.style.width = rect.width + 'px';
+      sidebarInner.style.maxHeight = 'calc(100vh - ' + (top * 2) + 'px)';
+      sidebarInner.style.overflow = 'auto';
+      sidebarInner.style.zIndex = 1000;
+    } else {
+      // clear inline styles to restore normal flow
+      sidebarInner.style.position = '';
+      sidebarInner.style.top = '';
+      sidebarInner.style.left = '';
+      sidebarInner.style.width = '';
+      sidebarInner.style.maxHeight = '';
+      sidebarInner.style.overflow = '';
+      sidebarInner.style.zIndex = '';
+    }
   }
 
   // Recompute sticky offsets on resize and once on load
   window.addEventListener('resize', updateSidebarStickyOffsets);
   window.addEventListener('load', updateSidebarStickyOffsets);
+
+  // Recompute when TOC details toggles open/closed (affects height)
+  function attachTocToggleListeners(){
+    const tocs = document.querySelectorAll('.widget-toc');
+    tocs.forEach(d => {
+      if(!d._tocToggleAttached){
+        d.addEventListener('toggle', updateSidebarStickyOffsets);
+        d._tocToggleAttached = true;
+      }
+    });
+  }
+
+  // Attach initially and after TOC moves
+  attachTocToggleListeners();
+  window.addEventListener('resize', attachTocToggleListeners);
 })();
 

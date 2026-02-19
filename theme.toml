@@ -4,3 +4,16 @@ min_version = "0.55.0"
 description = "Clean, modern Hugo theme with light/dark modes and clean typography."
 tags = ["blog", "minimal", "responsive", "theme"]
 authors = [ { name = "flxmodern" } ]
+
+[params.widgets]
+# Configure social links for the sidebar widget. Example:
+# [params.widgets.social]
+#[params.widgets.social]
+# You can provide either a full URL or just your username.
+# If you provide a username, the theme will build the canonical URL.
+# Examples using username-only form:
+# mastodon = "yourhandle"
+# bluesky = "yourhandle"
+# instagram = "yourhandle"
+# linkedin = "yourhandle"
+# github = "yourhandle"

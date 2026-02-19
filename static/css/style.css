@@ -98,6 +98,24 @@ body.dark .categories-dropdown a:hover{
 .widget-panel ul{margin:0;padding:0;list-style:none}
 .widget-panel li{padding:0.3rem 0}
 
+/* Social widget */
+.widget-social .social-list{display:flex;flex-direction:column;gap:0.4rem;margin:0;padding:0;list-style:none}
+.widget-social .social-item a{display:inline-flex;align-items:center;gap:0.75rem;text-decoration:none;color:var(--text);padding:0.6rem 0.75rem;border-radius:10px}
+.widget-social .social-item a svg{flex:0 0 auto;color:inherit}
+.widget-social .social-item a:hover{opacity:0.95}
+.widget-social .social-item.social-github a{font-weight:600}
+
+/* Brand backgrounds */
+.widget-social .social-mastodon a{background:#6364FF;color:#fff}
+.widget-social .social-bluesky a{background:#2EB6F5;color:#fff}
+.widget-social .social-instagram a{background:#E1306C;color:#fff}
+.widget-social .social-linkedin a{background:#0A66C2;color:#fff}
+.widget-social .social-github a{background:#181717;color:#fff}
+
+@media (min-width:900px){
+  .widget-social .social-list{flex-direction:column}
+}
+
 /* Post categories */
 .post-categories{
   margin-top:0.5rem;
@@ -216,6 +234,13 @@ body.dark .post-categories a:hover{
 @media (max-width:900px){
   .content-area{flex-direction:column}
   .main-column,.sidebar{width:100%}
+}
+
+/* Sidebar inner container: stick the whole set of widgets as a block */
+.sidebar-inner{display:flex;flex-direction:column;gap:0.75rem}
+/* `.sidebar-inner` positioning is managed by JS: fixed on desktop, static on mobile. */
+@media (max-width:900px){
+  .sidebar-inner{position:static;max-height:none;overflow:visible}
 }
 
 /* Author profile styles */
