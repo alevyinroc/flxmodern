@@ -18,8 +18,16 @@
     {{ end }}
   </ul>
 
-  <nav class="pagination">
-    {{ if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}">Previous</a>{{ end }}
-    {{ if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}">Next</a>{{ end }}
+  <nav class="post-navigation pagination">
+    <div class="post-nav-prev">
+      {{ if $paginator.HasPrev }}
+        <a href="{{ $paginator.Prev.URL }}">Previous</a>
+      {{ end }}
+    </div>
+    <div class="post-nav-next">
+      {{ if $paginator.HasNext }}
+        <a href="{{ $paginator.Next.URL }}">Next</a>
+      {{ end }}
+    </div>
   </nav>
 {{ end }}

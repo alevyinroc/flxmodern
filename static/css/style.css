@@ -333,3 +333,27 @@ body.dark .post-categories a:hover{
 .post-nav-next a:hover {
   text-decoration: underline;
 }
+
+/* Add arrow glyphs via CSS so arrows are positioned outside the text */
+.post-navigation .post-nav-prev a{
+  display:inline-flex !important;
+  align-items:center !important;
+}
+.post-navigation .post-nav-prev a::before{
+  content: '←' !important;
+  margin-right:0.5rem !important;
+  color:var(--accent) !important;
+  font-size:1.05rem !important;
+  line-height:1 !important;
+}
+.post-navigation .post-nav-next a{
+  display:inline-flex !important;
+  align-items:center !important;
+}
+.post-navigation .post-nav-next a::after{
+  content: '→' !important;
+  margin-left:0.5rem !important;
+  color:var(--accent) !important;
+  font-size:1.05rem !important;
+  line-height:1 !important;
+}
