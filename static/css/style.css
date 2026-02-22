@@ -382,3 +382,24 @@ body.dark .post-categories a:hover{
   font-size:1.05rem !important;
   line-height:1 !important;
 }
+
+/* Categories index grid (terms page) */
+.categories-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:0.75rem;
+  align-items:start;
+}
+.category-pill{
+  display:inline-block;
+  padding:0.6rem 0.8rem;
+  background:var(--container-bg, #f7fafc);
+  border-radius:8px;
+  text-decoration:none;
+  color:var(--text);
+  border:1px solid rgba(0,0,0,0.04);
+}
+.category-pill .count{color:var(--muted);margin-left:0.35rem;font-size:0.95em}
+@media (max-width:900px){
+  .categories-grid{grid-template-columns:repeat(1, 1fr)}
+}

@@ -1,0 +1,16 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+
+  {{/* Alphabetical three-column list of taxonomy terms (categories) */}}
+  {{ $cats := slice }}
+  {{ range $k, $v := .Site.Taxonomies.categories }}
+    {{ $cats = $cats | append $k }}
+  {{ end }}
+  {{ $cats = sort $cats }}
+  <div class="categories-grid">
+    {{ range $cats }}
+      {{ $pages := index $.Site.Taxonomies.categories . }}
+      <a class="category-pill" href="{{ "/categories/" | relURL }}{{ . | urlize }}/">{{ . }} <span class="count">({{ len $pages }})</span></a>
+    {{ end }}
+  </div>
+{{ end }}
