@@ -202,33 +202,28 @@ body.dark .post-categories a:hover{
   .post-toc{display:block}
 }
 
-/* Underline subheadings in post body */
+/* Headings styling in post body */
 .post-content h2,
 .post-content h3,
 .post-content h4 {
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  text-decoration: none;
   position: relative;
   cursor: pointer;
 }
 
 /* Show anchor symbol on hover */
+/* Show a persistent link emoji after headings */
 .post-content h2::after,
 .post-content h3::after,
 .post-content h4::after {
-  content: ' #';
+  content: '🔗';
   margin-left: 0.5rem;
   color: var(--accent);
-  opacity: 0;
-  transition: opacity 0.2s ease;
+  opacity: 1;
   font-weight: normal;
   text-decoration: none;
-}
-
-.post-content h2:hover::after,
-.post-content h3:hover::after,
-.post-content h4:hover::after {
-  opacity: 1;
+  font-size: 0.5em; /* 75% of the heading text size */
+  vertical-align: middle;
 }
 
 @media (max-width:900px){
